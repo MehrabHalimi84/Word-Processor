@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Persian Word Calculator</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="mode-wrapper">
+
+      <input type="checkbox" id="checkNormal">
+      <label for="checkNormal">حالت عادی</label>
+
+      <input type="checkbox" id="checkSpecial">
+      <label for="checkSpecial">حالت مخصوص</label>
+
+      <input type="checkbox" id="checkCombined">
+      <label for="checkCombined">حالت ترکیبی</label>
+
+    </div>
+
+
+    <textarea id="textInput" placeholder="متن را وارد کنید"></textarea>
+
+
+    <div id="combinedOptions" class="combined-inline">
+      <span class="combined-label">شروع شمارش از:</span>
+      <input type="number" id="startIndexInput" min="0" step="1" value="1" />
+    </div>
+
+
+
+
+    <!-- ردیف دکمه‌ها -->
+    <div class="btn-row">
+      <button class="main-btn calc-btn" onclick="runCalc()">محاسبه</button>
+
+      <button class="main-btn copy-btn" onclick="copyTableData()" id="copyBtn" style="display: none;">
+        📋 کپی جدول
+      </button>
+
+      <button class="main-btn reset-btn" onclick="resetAll()">
+        پاک سازی
+      </button>
+    </div>
+    <p id="errorBox"></p>
+
+    <div id="output"></div>
+  </div>
+  </div>
+
+
+
+
+  <body>
+    <div class="main-container"></div>
+
+    <footer class="app-footer">
+      © 2025 Mehrab Halimi —
+      <a class="footer-email" href="mailto:mehrab.halimi.dev@gmail.com">
+        mehrab.halimi.dev@gmail.com
+      </a>
+    </footer>
+  </body>
+
+  <script src="main.js"></script>
+  <script src="front.js"></script>
+</body>
+
+</html>

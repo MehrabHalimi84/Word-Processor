@@ -1,0 +1,360 @@
+@font-face {
+    font-family: 'Yekan';
+    src: url('./fonts/B_Yekan/Yekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* کل صفحه */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    direction: rtl;
+    margin: 20px;
+    font-family: 'Yekan', sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+}
+
+/* کانتینر اصلی */
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: #fff;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ورودی متن */
+#textInput {
+    width: 100%;
+    height: 200px;
+    font-size: 18px;
+    font-family: 'Yekan', sans-serif;
+    direction: rtl;
+    padding: 12px;
+    background: #ffffff;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: all 0.25s ease;
+}
+
+#textInput:hover {
+    border-color: #1976d2;
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.25);
+}
+
+#textInput:focus {
+    outline: none;
+    border-color: #1565c0;
+    box-shadow: 0 0 10px rgba(21, 101, 192, 0.35);
+    background: #fafbff;
+}
+
+/* دکمه‌ها */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    font-size: 18px;
+    font-family: 'Yekan', sans-serif;
+    cursor: pointer;
+    background: #e6e6e6;
+    color: #222;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+}
+
+button:hover {
+    background: #0000bb;
+    color: white;
+    border-color: #1976d2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* خطا */
+#errorBox {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* خروجی */
+#output {
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: 'Yekan', sans-serif;
+    white-space: pre-line;
+}
+
+/* جدول اصلی نتایج */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-family: 'Yekan', sans-serif;
+    font-size: 16px;
+}
+
+.result-table th {
+    background: #f0f0f0;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.result-table td {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.result-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.result-table tbody tr:nth-child(even) {
+    background: #f9f9ff;
+}
+
+/* جدول خلاصه */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Yekan', sans-serif;
+    font-size: 16px;
+}
+
+.summary-table td {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    text-align: center;
+}
+
+.summary-table tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.summary-table tr:nth-child(even) {
+    background: #f9f9ff;
+}
+
+.reset-btn {
+    background-color: #ef5350;
+    color: white;
+    padding: 12px 22px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Yekan', sans-serif;
+    transition: background-color 0.2s ease;
+    flex-basis: 15%;
+}
+
+.reset-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* دکمه محاسبه */
+.calc-btn {
+    flex-basis: 60%;
+}
+
+/* دکمه کپی */
+.copy-btn {
+    flex-basis: 25%;
+}
+
+/* ردیف دکمه‌ها */
+.btn-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+
+/* وقتی دکمه کپی مخفی است => فقط دو دکمه (محاسبه ± ریست) در دو ستون مساوی */
+.btn-row:not(:has(#copyBtn:not([style*="display: none"]))) .calc-btn {
+    flex-basis: 70% !important;
+}
+
+.btn-row:not(:has(#copyBtn:not([style*="display: none"]))) .reset-btn {
+    flex-basis: 30% !important;
+}
+
+/* وقتی دکمه کپی قابل نمایش شد => سه تایی با نسبت ۶۰-۲۵-۱۵ */
+.btn-row:has(#copyBtn:not([style*="display: none"])) .calc-btn {
+    flex-basis: 60% !important;
+}
+
+.btn-row:has(#copyBtn:not([style*="display: none"])) .copy-btn {
+    flex-basis: 25% !important;
+}
+
+.btn-row:has(#copyBtn:not([style*="display: none"])) .reset-btn {
+    flex-basis: 15% !important;
+}
+
+/* قالب عمومی دکمه‌ها */
+.main-btn {
+    background-color: #ababab;
+    color: white;
+    padding: 12px 22px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Yekan', sans-serif;
+    transition: background-color 0.5s ease;
+}
+
+.main-btn:hover {
+    background-color: #0e11b1;
+}
+
+/* فوتر */
+.main-container {
+    flex: 1;
+}
+
+.app-footer {
+    text-align: center;
+    font-family: 'Yekan', sans-serif;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.45);
+    padding: 10px 0;
+    margin-top: 40px;
+    user-select: none;
+}
+
+/*  Email link inside footer  */
+.app-footer .footer-email {
+    color: inherit;
+    text-decoration: underline;
+    transition: opacity 0.15s ease;
+}
+
+.app-footer .footer-email:hover {
+    opacity: 0.7;
+}
+
+/* -------------------------------------------------
+   چک‌باکس‌ های زیبا و مدرن
+   (بدون تغییر HTML — فقط CSS)
+-------------------------------------------------- */
+
+.mode-wrapper {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* برچسب‌ها */
+.mode-wrapper label {
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* مخفی‌سازی چک‌باکس واقعی */
+.mode-wrapper input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid #b3b3b3;
+    background: #fafafa;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.25s ease;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.08),
+        inset 0 0 0 3px #fff;
+}
+
+/* حالت هاور */
+.mode-wrapper input[type="checkbox"]:hover {
+    border-color: #1a73e8;
+    box-shadow:
+        0 2px 6px rgba(26, 115, 232, 0.25),
+        inset 0 0 0 3px #fff;
+}
+
+/* حالت فعال */
+.mode-wrapper input[type="checkbox"]:checked {
+    background: #1a73e8;
+    border-color: #0b57d0;
+    box-shadow:
+        0 2px 6px rgba(26, 115, 232, 0.28),
+        inset 0 0 0 3px #fff;
+}
+
+/* علامت تیک */
+.mode-wrapper input[type="checkbox"]:checked::after {
+    content: "✔";
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.mode-wrapper input[type="checkbox"]::after {
+    opacity: 0;
+}
+
+
+/* === Minimal Combined Start Index === */
+
+.combined-inline {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+
+    font-size: 13px;
+    color: #666;
+}
+
+.combined-inline input {
+    width: 60px;
+    height: 26px;
+    padding: 2px 6px;
+
+    font-size: 13px;
+    text-align: center;
+
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.combined-inline input:focus {
+    outline: none;
+    border-color: #6a6adb;
+}
